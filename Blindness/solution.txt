@@ -1,0 +1,50 @@
+========= solution.txt =========
+
+Title: Blindness Challenge — solution log
+Author: CeeTaaFhal (record of commands & steps)
+Date: (use this file to revise the workflow)
+
+Goal:
+- Inspect challenge.txt, convert visible whitespace to binary (0/1),
+  decode the resulting Binaryfuck/Binary-BF data (using dCode or locally),
+  reveal the hidden message.
+
+
+----- Commands & step-by-step guide (exact commands to run) -----
+
+1) View the file (raw)
+   $ cat challenge.txt
+   -> Shows mostly blank / non-printable output in the terminal.
+
+2) Show non-printable characters in a visible form
+   $ cat -A challenge.txt
+   -> This prints control characters and makes tabs (^I) and other non-printables visible.
+   -> Good for seeing the pattern of whitespace vs control characters.
+
+3) Convert spaces/tabs to 0/1 (one simple transformation used)
+   # This was the command you used to translate spaces -> 0 and tabs -> 1
+   $ cat challenge.txt | sed 's/ /\x30/g; s/\t/\x31/g'
+
+   Explanation: 
+   - sed 's/ /\x30/g' replaces space characters with ASCII '0'
+   - sed 's/\t/\x31/g' replaces tab characters with ASCII '1'
+   - The output is a continuous string of 0s and 1s (binary).
+
+4) Copy the resulting binary string (single long line)
+   - Example (truncated): 0000000000000000000000000000001100100000100... (very long)
+   - Save it to a file if you want:
+     $ cat challenge.txt | sed 's/ /\x30/g; s/\t/\x31/g' > binary_string.txt
+
+5) Decode the binary string
+     - Go to: https://www.dcode.fr/binaryfuck-language
+     - Paste the entire binary string into the input box.
+     - Choose "Decode" (Binaryfuck → Brainfuck → Output).
+     - dCode translates the Binaryfuck program to Brainfuck and runs it to show the output (plain text).
+     - Result: you will see the hidden text/message.
+
+----- Quick checklist for revision (memorize these short steps) -----
+
+1. cat -A challenge.txt  → see invisible characters
+2. cat challenge.txt | sed 's/ /\x30/g; s/\t/\x31/g'  → map spaces/tabs to 0/1
+3. Copy the long binary line or save to file (binary_string.txt)
+4. Use https://www.dcode.fr/binaryfuck-language and paste the binary string → Decode
