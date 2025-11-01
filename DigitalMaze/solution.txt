@@ -1,0 +1,35 @@
+1. Inspect the PNG for embedded files:
+   Command:
+   binwalk challenge.png
+
+   * Analyzes the file for embedded data. The output showed that a GIF file starts at byte offset 2622.
+
+2. Extract the embedded GIF:
+   Command:
+   dd if=challenge.png of=embedded_from2622.gif bs=1 skip=2622 status=progress
+
+   * Copies bytes from input (challenge.png) to output (embedded_from2622.gif).
+   * bs=1 ensures accurate byte skipping.
+   * skip=2622 skips the first 2622 bytes to reach the embedded GIF.
+   * status=progress shows progress during extraction.
+
+   Check file type:
+   file embedded_from2622.gif
+   Expected output: GIF image data, version 89a, 150 x 150
+
+3. Extract frames from the GIF:
+   Commands:
+   mkdir -p frames
+   convert embedded_from2622.gif frames/frame_%03d.png
+
+   * mkdir -p frames creates a folder to store the extracted frames.
+   * convert (ImageMagick) extracts all frames and saves them as PNG images.
+
+4. Combine frames into one image:
+   Command:
+   convert \( frame_000.png frame_001.png +append \) \( frame_002.png frame_003.png +append \) -append combined.png
+
+   * Horizontally combines the first two frames, then the next two, and vertically stacks both results.
+   * The final image (combined.png) is a 2x2 grid of the four frames.
+
+5. Scan combined.png for the flag
