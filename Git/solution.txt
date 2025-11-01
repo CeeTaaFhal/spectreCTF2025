@@ -1,0 +1,19 @@
+Visit the repository: https://github.com/DreadX86/spectreCTF
+Check the commits — you will be able to get the flag in the 3rd commit (titled “Adding Files”).
+
+Steps to find the flag (copy-paste commands):
+
+1.Clone the repository (SSH or HTTPS):
+
+git clone git@github.com:DreadX86/spectreCTF.git
+OR
+git clone https://github.com/DreadX86/spectreCTF.git
+
+2. List commits 
+
+git log
+
+3.Inspect the commit and the exact changes it introduced:
+
+git show <commit-hash>
+
