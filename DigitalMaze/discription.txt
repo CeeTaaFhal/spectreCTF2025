@@ -1,0 +1,2 @@
+TITLE: Digital Maze
+DISCRIPTION: Its just an warmup question ! Hope you could find your way out of this Digital Maze.
