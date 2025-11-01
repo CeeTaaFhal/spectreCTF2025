@@ -1,0 +1,14 @@
+🧩 Step 1: Backup the original file (just in case)
+
+cp Challenge.png Challenge_backup.png
+
+🧩 Step 2: Write the correct 8-byte PNG header to the file
+Run this command to replace the first 8 bytes:
+
+printf '\x89\x50\x4E\x47\x0D\x0A\x1A\x0A' | dd of=Challenge.png bs=1 count=8 conv=notrunc
+
+🧩 Step 3: Verify the change
+
+xxd -l 8 Challenge.png
+
+You should now see: 00000000: 8950 4e47 0d0a 1a0a  .PNG....
