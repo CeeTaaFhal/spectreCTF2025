@@ -1,0 +1,2 @@
+TITLE: Packets in the Wire
+DISCRIPTION: Did you know you can capture all the packets traveling through your network? Can you find useful information from this capture, or will you fall into pitfalls?

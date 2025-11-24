@@ -1,0 +1,20 @@
+1. Open the given .pcap file in Wireshark.
+
+2. In the Wireshark display filter bar, apply a filter to focus on relevant traffic:
+   http || tcp
+
+3. Go through the captured packets and inspect the HTTP requests and responses:
+   - Look for suspicious or unusual data in the HTTP payload.
+   - You may find a long random-looking string that appears to be Base64 encoded.
+
+4. Once you identify the suspected flag string:
+   - Right-click the packet and choose “Follow” → “TCP Stream” or “HTTP Stream” if needed, to see the full data.
+   - Copy the Base64 string (it will typically look like random letters, numbers, +, /, and =).
+
+5. Decode the Base64 string to retrieve the flag:
+   - Using a terminal:
+     echo "BASE64_STRING_HERE" | base64 -d
+   - Or use any online/offline Base64 decoder.
+
+6. The decoded output will be in the format of the flag for this challenge.
+   That decoded text is the final flag.
