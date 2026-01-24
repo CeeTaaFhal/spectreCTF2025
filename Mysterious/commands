@@ -1,0 +1,1 @@
+sox signal.wav -n spectrogram -r -o spectrogram.png
